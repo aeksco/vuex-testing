@@ -16,6 +16,9 @@ export default function ({ NEW_MODEL }) {
       resetNewModel (state) {
         state.newModel = state.defaultNewModel
       },
+      resetEditModel (state) {
+        state.editModel = state.defaultNewModel
+      },
       newModel (state, model) {
         state.newModel = Object.assign({}, model)
       },
@@ -36,7 +39,6 @@ export default function ({ NEW_MODEL }) {
     },
     actions: {
       create ({ state, commit }) {
-
         // Sets up createdModel
         const createdModel = Object.assign({}, state.newModel);
         createdModel.id = Math.random()
@@ -48,14 +50,15 @@ export default function ({ NEW_MODEL }) {
         commit('collection', [...state.collection, createdModel])
       },
       update ({ state, commit }) {
-
-        // state.editModel.id
+        // Updates collection
         const collection = state.collection.map((model) => {
           if (model.id !== state.editModel.id) return model
           return state.editModel
         })
-
         commit('collection', collection)
+
+        // Resets state.editModel
+        commit('resetEditModel')
       },
       destroy ({ state, commit }, modelId) {
         const collection = state.collection.filter(m => m.id !== modelId)
