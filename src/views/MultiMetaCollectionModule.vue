@@ -8,6 +8,7 @@
         {{t.name}}
         |
         {{t.age}}
+        <button @click="destroyPersonModel(t.id)">Destroy</button>
       </li>
     </ul>
 
@@ -27,6 +28,7 @@
         {{t.label}}
         |
         {{t.open}}
+        <button @click="destroyPlaceModel(t.id)">Destroy</button>
       </li>
     </ul>
 
@@ -55,7 +57,9 @@ export default {
   methods: {
     ...mapActions({
       createPersonModel: 'project/person/create',
-      createPlaceModel: 'project/place/create'
+      createPlaceModel: 'project/place/create',
+      destroyPersonModel: 'project/person/destroy',
+      destroyPlaceModel: 'project/place/destroy'
     }),
     ...mapMutations({
       setNewPersonModel: 'project/person/newModel',

@@ -56,6 +56,10 @@ export default function ({ NEW_MODEL }) {
         })
 
         commit('collection', collection)
+      },
+      destroy ({ state, commit }, modelId) {
+        const collection = state.collection.filter(m => m.id !== modelId)
+        commit('collection', collection)
       }
     }
 
