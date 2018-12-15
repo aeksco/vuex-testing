@@ -1,25 +1,5 @@
-import collectionModule from './collectionModule'
-import metaCollectionModule from './metaCollectionModule'
-
-const NEW_PERSON_MODEL = {
-  id: null,
-  name: '',
-  age: ''
-}
-
-const NEW_PLACE_MODEL = {
-  id: null,
-  label: '',
-  open: true
-}
-
 export default {
   namespaced: true,
-  modules: {
-    contributors: collectionModule,
-    person: metaCollectionModule({ NEW_MODEL: NEW_PERSON_MODEL }),
-    place: metaCollectionModule({ NEW_MODEL: NEW_PLACE_MODEL })
-  },
   state: {
     defaultNewModel: {
       id: null,
@@ -32,9 +12,9 @@ export default {
       active: false
     },
     collection: [
-      { id: 1, label: 'Project A', active: true },
-      { id: 2, label: 'Project B', active: false },
-      { id: 3, label: 'Project C', active: false }
+      { id: 1, label: 'Contributor A', active: true },
+      { id: 2, label: 'Contributor B', active: false },
+      { id: 3, label: 'Contributor C', active: false }
     ]
   },
   mutations: {

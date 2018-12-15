@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import project from './projectModule'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  strict: true,
   state: {
     newTodo: {
       id: null,
@@ -42,6 +44,6 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    project: require('./projectModule')
+    project
   }
 })

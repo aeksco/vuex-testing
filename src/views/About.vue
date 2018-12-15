@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Todo List</h1>
+    <p class="lead">Uses a root-level vuex store module to manage a collection</p>
 
     <ul>
       <li v-for="t in todos" :key="t.id">
