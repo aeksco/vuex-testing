@@ -6,17 +6,21 @@ export default function ({ NEW_MODEL }) {
     state: {
       defaultNewModel: Object.assign({}, NEW_MODEL),
       newModel: Object.assign({}, NEW_MODEL),
+      editModel: Object.assign({}, NEW_MODEL),
       collection: []
     },
     mutations: {
+      collection (state, collection) {
+        state.collection = collection
+      },
       resetNewModel (state) {
         state.newModel = state.defaultNewModel
       },
       newModel (state, model) {
         state.newModel = Object.assign({}, model)
       },
-      collection (state, collection) {
-        state.collection = collection
+      editModel (state, model) {
+        state.editModel = Object.assign({}, model)
       }
     },
     getters: {
@@ -25,6 +29,9 @@ export default function ({ NEW_MODEL }) {
       },
       newModel (state) {
         return Object.assign({}, state.newModel)
+      },
+      editModel (state) {
+        return Object.assign({}, state.editModel)
       }
     },
     actions: {
@@ -39,6 +46,16 @@ export default function ({ NEW_MODEL }) {
 
         // Updates state.collection
         commit('collection', [...state.collection, createdModel])
+      },
+      update ({ state, commit }) {
+
+        // state.editModel.id
+        const collection = state.collection.map((model) => {
+          if (model.id !== state.editModel.id) return model
+          return state.editModel
+        })
+
+        commit('collection', collection)
       }
     }
 
